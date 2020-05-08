@@ -1,0 +1,36 @@
+Project:
+  Type: AWS::CodeBuild::Project
+  Properties:
+    Name: sam-deployment
+    Description: Build process for a simple Python HelloWorld Application deployed using AWS SAM
+    ServiceRole: !GetAtt ServiceRole.Arn
+    Artifacts:
+      Type: S3
+      Location: sam-artifacts-sou
+      Name: code-build-artifacts
+      Path: ""
+      NamespaceType: NONE
+      Packaging: NONE
+    Environment:
+      Type: LINUX_CONTAINER
+      ComputeType: BUILD_GENERAL1_SMALL
+      Image: aws/codebuild/amazonlinux2-x86_64-standard:2.0
+    Source:
+      Location: https://github.com/soumoks/sam-python-example.git
+      Type: GITHUB
+      gitCloneDepth: 1
+    Triggers:
+      Webhook: true
+      FilterGroups:
+        - - Type: EVENT
+            Pattern: PUSH
+            ExcludeMatchedPattern: false
+    BadgeEnabled: false
+    LogsConfig:
+      CloudWatchLogs: 
+        Status: ENABLED
+      S3Logs:
+        S3LogsConfig:
+          Status: DISABLED
+          EncryptionDisabled: false
+    TimeoutInMinutes: 10
