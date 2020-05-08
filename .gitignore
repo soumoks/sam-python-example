@@ -1,0 +1,5 @@
+.vscode/*
+*.pyo
+*.pyc
+.aws-sam/*
+.helloworldvenv/*
