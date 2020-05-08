@@ -25,17 +25,16 @@ phases:
     #commands:
       # - command
       # - command
-  #pre_build:
-    #commands:
-      # - command
-      # - command
+  pre_build:
+    commands:
+      - echo Entered pre_build phase
       #Run tests and lints here if required
       # pytest
-      #change this if required.
+      #change this if required
   build:
     commands:
-      echo Build started on `date`
-      echo Entered the build phase ...
+      - echo Build started on `date`
+      - echo Entered the build phase ...
       #Lambda deploy reference
       #https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html
 
@@ -43,9 +42,9 @@ phases:
       #https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
 
       # Package SAM template
-      sam package --template-file template.yaml --s3-bucket sam-artifacts-sou --output-template-file packaged.yaml
+      - sam package --template-file template.yaml --s3-bucket sam-artifacts-sou --output-template-file packaged.yaml
       # Deploy packaged SAM template
-      sam deploy --template-file packaged.yaml --stack-name python-hello-world-sam-application --capabilities CAPABILITY_IAM
+      - sam deploy --template-file packaged.yaml --stack-name python-hello-world-sam-application --capabilities CAPABILITY_IAM
       # - command
       # - command
   #post_build:
