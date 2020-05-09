@@ -1,7 +1,7 @@
 ### AWS SAM CI/CD
 This is a sample application demonstrating the capababilities of AWS Serverless Application Model [(AWS SAM)](https://aws.amazon.com/serverless/sam/)
 
-![alt text](https://github-cf.sourabh.org/images/aws_sam_build_process.png)
+![alt text](https://d1qdjx7ktjrdjc.cloudfront.net/images/aws_sam_build_process.png)
 
 
 * Clone the repository
